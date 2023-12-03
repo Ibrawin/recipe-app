@@ -1,12 +1,14 @@
 package com.ibrawin.recipeapp.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Recipe {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String description;
@@ -25,6 +27,9 @@ public class Recipe {
 
     @OneToOne(mappedBy = "recipe", cascade = CascadeType.ALL)
     private Notes note;
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     public Long getId() {
         return id;
