@@ -33,6 +33,8 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private Set<Ingredient> ingredients = new HashSet<>();
 
+    @ManyToMany(mappedBy = "recipes")
+    private Set<Category> categories;
     public Long getId() {
         return id;
     }
@@ -127,5 +129,13 @@ public class Recipe {
 
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
