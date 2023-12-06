@@ -1,6 +1,7 @@
 package com.ibrawin.recipeapp.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,7 +17,7 @@ public class Category {
     @JoinTable(name = "recipe_category",
             joinColumns = @JoinColumn(name = "recipe_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Recipe> recipes;
+    private Set<Recipe> recipes = new HashSet();
 
     public Long getId() {
         return id;
