@@ -1,6 +1,7 @@
 package com.ibrawin.recipeapp.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class UnitOfMeasure {
@@ -11,9 +12,8 @@ public class UnitOfMeasure {
 
     private String description;
 
-    @OneToOne
-    @JoinColumn(name = "ingredient_id")
-    private Ingredient ingredient;
+    @OneToMany(mappedBy = "unitOfMeasure")
+    private Set<Ingredient> ingredients;
 
     public Long getId() {
         return id;
@@ -31,11 +31,11 @@ public class UnitOfMeasure {
         this.description = description;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }

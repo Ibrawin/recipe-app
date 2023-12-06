@@ -1,7 +1,5 @@
 package com.ibrawin.recipeapp.domain;
 
-import com.ibrawin.recipeapp.difficulty.Difficulty;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +17,8 @@ public class Recipe {
     private Integer servings;
     private String source;
     private String url;
+
+    @Lob
     private String directions;
 
     @Enumerated(value = EnumType.STRING)
@@ -34,7 +34,7 @@ public class Recipe {
     private Set<Ingredient> ingredients = new HashSet<>();
 
     @ManyToMany(mappedBy = "recipes")
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
     public Long getId() {
         return id;
     }
