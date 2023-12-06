@@ -1,4 +1,4 @@
-package com.ibrawin.recipeapp.difficulty;
+package com.ibrawin.recipeapp.domain;
 
 public enum Difficulty {
     EASY, MEDIUM, HARD
