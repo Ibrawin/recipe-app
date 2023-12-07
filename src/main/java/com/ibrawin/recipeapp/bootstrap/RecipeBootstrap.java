@@ -4,6 +4,7 @@ import com.ibrawin.recipeapp.domain.*;
 import com.ibrawin.recipeapp.repositories.CategoryRepository;
 import com.ibrawin.recipeapp.repositories.RecipeRepository;
 import com.ibrawin.recipeapp.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Component
 public class RecipeBootstrap implements CommandLineRunner {
 
@@ -27,9 +29,11 @@ public class RecipeBootstrap implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         recipeRepository.saveAll(getRecipes());
+        log.debug("Loading bootstrap...");
     }
 
     private List<Recipe> getRecipes() {
+        log.debug("Creating entities...");
         List<Recipe> recipes = new ArrayList<>(2);
 
         UnitOfMeasure teaspoon = getUnitOfMeasure("Teaspoon");
