@@ -5,12 +5,15 @@ import com.ibrawin.recipeapp.domain.Recipe;
 import com.ibrawin.recipeapp.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class RecipeServiceImplTest {
@@ -46,5 +49,32 @@ class RecipeServiceImplTest {
 
         assertEquals(2, recipeService.getRecipes().size());
         verify(recipeRepository, times(1)).findAll();
+    }
+
+    @ParameterizedTest
+    @ValueSource(longs = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+    void getRecipeByIdSuccess(Long id) {
+        Recipe recipe = new Recipe();
+        recipe.setId(id);
+        Optional<Recipe> optionalRecipe = Optional.of(recipe);
+        when(recipeRepository.findById(id))
+                .thenReturn(optionalRecipe);
+
+        Recipe returnedRecipe = recipeService.getRecipeById(id);
+
+        assertEquals(id, returnedRecipe.getId());
+        verify(recipeRepository, times(1)).findById(id);
+        verify(recipeRepository, never()).findAll();
+    }
+
+    @Test
+    void getRecipeByIdFailure() {
+        Recipe recipe = new Recipe();
+        recipe.setId(null);
+        Optional<Recipe> optionalRecipe = Optional.of(recipe);
+        when(recipeRepository.findById(null))
+                .thenReturn(Optional.empty());
+
+        assertThrows(RuntimeException.class, () -> recipeService.getRecipeById(null));
     }
 }
