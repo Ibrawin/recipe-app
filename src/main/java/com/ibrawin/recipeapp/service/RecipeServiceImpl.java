@@ -22,4 +22,10 @@ public class RecipeServiceImpl implements RecipeService {
         log.debug("Grabbing all recipes in the service layer");
         return recipeRepository.findAll();
     }
+
+    @Override
+    public Recipe getRecipeById(Long id) {
+        log.debug("Grabbing recipe with id " + id + " in the service layer");
+        return recipeRepository.findById(id).orElseThrow(() -> new RuntimeException("Expected Recipe Not Found."));
+    }
 }
