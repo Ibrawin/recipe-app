@@ -92,6 +92,10 @@ public class RecipeBootstrap implements CommandLineRunner {
         guacRecipe.getCategories().add(american);
         guacRecipe.getCategories().add(mexican);
 
+        guacRecipe.setUrl("http://www.simplyrecipes.com/recipes/perfect_guacamole/");
+        guacRecipe.setServings(4);
+        guacRecipe.setSource("Simply Recipes");
+
         recipes.add(guacRecipe);
 
 
@@ -151,6 +155,10 @@ public class RecipeBootstrap implements CommandLineRunner {
 
         tacosRecipe.getCategories().add(american);
         tacosRecipe.getCategories().add(mexican);
+
+        tacosRecipe.setUrl("http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
+        tacosRecipe.setServings(4);
+        tacosRecipe.setSource("Simply Recipes");
 
         recipes.add(tacosRecipe);
 
