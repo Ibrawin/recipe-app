@@ -1,6 +1,8 @@
 package com.ibrawin.recipeapp.controllers;
 
 import com.ibrawin.recipeapp.domain.Recipe;
+import com.ibrawin.recipeapp.dto.RecipeDTO;
+import com.ibrawin.recipeapp.dto.RecipeMapper;
 import com.ibrawin.recipeapp.service.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,14 +14,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 class IndexControllerTest {
@@ -29,6 +31,9 @@ class IndexControllerTest {
 
     @Mock
     private RecipeService recipeService;
+
+    @Mock
+    private RecipeMapper recipeMapper;
 
     private IndexController indexController;
 
@@ -44,13 +49,14 @@ class IndexControllerTest {
 
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("index"));
+                .andExpect(view().name("index"))
+                .andExpect(model().attributeExists("recipes"));
     }
 
     @Test
     void getIndexPage() {
         // Given
-        List<Recipe> recipes = List.of(new Recipe(), new Recipe());
+        List<RecipeDTO> recipes = Stream.of(new Recipe(), new Recipe()).map(recipeMapper).collect(Collectors.toList());
         when(recipeService.getRecipes())
                 .thenReturn(recipes);
         ArgumentCaptor<List<Recipe>> argumentCaptor = ArgumentCaptor.forClass(List.class);
