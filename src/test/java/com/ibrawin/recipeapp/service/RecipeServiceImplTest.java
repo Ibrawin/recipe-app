@@ -3,8 +3,7 @@ package com.ibrawin.recipeapp.service;
 import com.ibrawin.recipeapp.domain.Difficulty;
 import com.ibrawin.recipeapp.domain.Notes;
 import com.ibrawin.recipeapp.domain.Recipe;
-import com.ibrawin.recipeapp.dto.RecipeDTO;
-import com.ibrawin.recipeapp.dto.RecipeMapper;
+import com.ibrawin.recipeapp.dto.RecipeClientDTO;
 import com.ibrawin.recipeapp.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +29,7 @@ class RecipeServiceImplTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository, new RecipeMapper());
+        recipeService = new RecipeServiceImpl(recipeRepository);
     }
 
     @Test
@@ -73,9 +72,9 @@ class RecipeServiceImplTest {
         when(recipeRepository.findById(id))
                 .thenReturn(optionalRecipe);
 
-        RecipeDTO returnedRecipe = recipeService.getRecipeById(id);
+        RecipeClientDTO returnedRecipe = recipeService.getRecipeById(id);
 
-        assertEquals(id, returnedRecipe.id());
+        assertEquals(id, returnedRecipe.getId());
         verify(recipeRepository, times(1)).findById(id);
         verify(recipeRepository, never()).findAll();
     }
@@ -83,11 +82,11 @@ class RecipeServiceImplTest {
     @Test
     void getRecipeByIdFailure() {
         Recipe recipe = new Recipe();
-        recipe.setId(null);
+        recipe.setId(-9L);
         Optional<Recipe> optionalRecipe = Optional.of(recipe);
-        when(recipeRepository.findById(null))
+        when(recipeRepository.findById(-9L))
                 .thenReturn(Optional.empty());
 
-        assertThrows(RuntimeException.class, () -> recipeService.getRecipeById(null));
+        assertThrows(RuntimeException.class, () -> recipeService.getRecipeById(-9L));
     }
 }

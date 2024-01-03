@@ -2,8 +2,7 @@ package com.ibrawin.recipeapp.controllers;
 
 import com.ibrawin.recipeapp.domain.Notes;
 import com.ibrawin.recipeapp.domain.Recipe;
-import com.ibrawin.recipeapp.dto.RecipeDTO;
-import com.ibrawin.recipeapp.dto.RecipeMapper;
+import com.ibrawin.recipeapp.dto.RecipeClientDTO;
 import com.ibrawin.recipeapp.service.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,28 +45,24 @@ class RecipeControllerTest {
         recipe.setId(1L);
         recipe.setNote(new Notes());
 
-        RecipeDTO recipeDTO = new RecipeMapper().apply(recipe);
+        RecipeClientDTO recipeClientDTO = new RecipeClientDTO();
         when(recipeService.getRecipeById(id))
-                .thenReturn(recipeDTO);
-        ArgumentCaptor<RecipeDTO> argumentCaptorRecipe = ArgumentCaptor.forClass(RecipeDTO.class);
+                .thenReturn(recipeClientDTO);
+        ArgumentCaptor<RecipeClientDTO> argumentCaptorRecipe = ArgumentCaptor.forClass(RecipeClientDTO.class);
 
         String viewName = recipeController.getRecipePage(model, id);
 
         assertEquals("recipe/show", viewName);
         verify(recipeService, times(1)).getRecipeById(anyLong());
         verify(model, times(1)).addAttribute(eq("recipe"), argumentCaptorRecipe.capture());
-        assertEquals(recipeDTO, argumentCaptorRecipe.getValue());
+        assertEquals(recipeClientDTO, argumentCaptorRecipe.getValue());
     }
 
     @Test
     void mockMvc() throws Exception {
-        Recipe recipe = new Recipe();
-        recipe.setId(1L);
-        recipe.setNote(new Notes());
+        RecipeClientDTO recipeClientDTO = new RecipeClientDTO();
 
-        RecipeDTO recipeDTO = new RecipeMapper().apply(recipe);
-
-        when(recipeService.getRecipeById(anyLong())).thenReturn(recipeDTO);
+        when(recipeService.getRecipeById(anyLong())).thenReturn(recipeClientDTO);
         MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
 
         mockMvc.perform(get("/recipe/show/1"))
