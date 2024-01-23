@@ -21,8 +21,8 @@
             <div class="card-body text-dark">
               <div class="row">
                 <div class="col-3 form-check">
-                  <label>Recipe Description:</label>
-                  <input type="text" class="form-control" th:field="*{description}"/>
+                  <label for="description">Recipe Description:</label>
+                  <input type="text" class="form-control" id="description" th:field="*{description}"/>
                 </div>
               </div>
               <div class="row">
@@ -46,16 +46,16 @@
               </div>
               <div class="row">
                 <div class="col-3 form-check">
-                  <label>Prep Time:</label>
-                  <input type="text" class="form-control" th:field="*{prepTime}"/>
+                  <label for="prep-time">Prep Time:</label>
+                  <input type="text" class="form-control" id="prep-time" th:field="*{prepTime}"/>
                 </div>
                 <div class="col-3 form-check">
-                  <label>Cooktime:</label>
-                  <input type="text" class="form-control" th:field="*{cookTime}"/>
+                  <label for="cook-time">Cooktime:</label>
+                  <input type="text" class="form-control" id="cook-time" th:field="*{cookTime}"/>
                 </div>
                 <div class="col-3 form-check">
-                  <label>Difficulty:</label>
-                  <select class="form-control">
+                  <label for="difficulty">Difficulty:</label>
+                  <select class="form-control" id="difficulty">
                     <option>Easy</option>
                     <option>Medium</option>
                     <option>Hard</option>
@@ -64,16 +64,16 @@
               </div>
               <div class="row">
                 <div class="col-3 form-check">
-                  <label>Servings:</label>
-                  <input type="text" class="form-control" th:field="*{servings}"/>
+                  <label for="servings">Servings:</label>
+                  <input type="text" class="form-control" id="servings" th:field="*{servings}"/>
                 </div>
                 <div class="col-3 form-check">
-                  <label>Source:</label>
-                  <input type="text" class="form-control" th:field="*{source}"/>
+                  <label for="source">Source:</label>
+                  <input type="text" class="form-control" id="source" th:field="*{source}"/>
                 </div>
                 <div class="col-3 form-check">
-                  <label>URL:</label>
-                  <input type="text" class="form-control" th:field="*{url}"/>
+                  <label for="url">URL:</label>
+                  <input type="text" class="form-control" id="url" th:field="*{url}"/>
                 </div>
               </div>
             </div>
@@ -112,7 +112,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-12 form-check">
-                  <textarea class="form-control" rows="3" th:field="*{directions}"></textarea></div>
+                  <label for="directions">Recipe Directions:</label>
+                  <textarea class="form-control" rows="3" id="directions" th:field="*{directions}"></textarea></div>
               </div>
             </div>
           </div>
@@ -123,7 +124,8 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-12 form-check">
-                  <textarea class="form-control" rows="3" th:field="*{note.notes}"></textarea>
+                  <label for="notes">Recipe Notes:</label>
+                  <textarea class="form-control" rows="3" id="notes" th:field="*{note.notes}"></textarea>
                 </div>
               </div>
             </div>
