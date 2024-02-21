@@ -1,6 +1,6 @@
 package com.ibrawin.recipeapp.controllers;
 
-import com.ibrawin.recipeapp.domain.Notes;
+import com.ibrawin.recipeapp.domain.Note;
 import com.ibrawin.recipeapp.domain.Recipe;
 import com.ibrawin.recipeapp.dto.RecipeClientDTO;
 import com.ibrawin.recipeapp.service.RecipeService;
@@ -43,7 +43,7 @@ class RecipeControllerTest {
     void getRecipePage(Long id) {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
-        recipe.setNote(new Notes());
+        recipe.setNote(new Note());
 
         RecipeClientDTO recipeClientDTO = new RecipeClientDTO();
         when(recipeService.getRecipeById(id))

@@ -1,7 +1,7 @@
 package com.ibrawin.recipeapp.service;
 
 import com.ibrawin.recipeapp.domain.Difficulty;
-import com.ibrawin.recipeapp.domain.Notes;
+import com.ibrawin.recipeapp.domain.Note;
 import com.ibrawin.recipeapp.domain.Recipe;
 import com.ibrawin.recipeapp.dto.RecipeClientDTO;
 import com.ibrawin.recipeapp.repositories.RecipeRepository;
@@ -39,7 +39,7 @@ class RecipeServiceImplTest {
         recipe1.setDifficulty(Difficulty.MEDIUM);
         recipe1.setDescription("Hello world");
         recipe1.setDirections("Do this");
-        Notes notes1 = new Notes();
+        Note notes1 = new Note();
         notes1.setId(1L);
         recipe1.setNote(notes1);
 
@@ -48,7 +48,7 @@ class RecipeServiceImplTest {
         recipe2.setDifficulty(Difficulty.EASY);
         recipe2.setDescription("ABC DEF");
         recipe2.setDirections("Do that");
-        Notes notes2 = new Notes();
+        Note notes2 = new Note();
         notes2.setId(2L);
         recipe2.setNote(notes1);
 
@@ -65,7 +65,7 @@ class RecipeServiceImplTest {
     void getRecipeByIdSuccess(Long id) {
         Recipe recipe = new Recipe();
         recipe.setId(id);
-        Notes notes = new Notes();
+        Note notes = new Note();
         notes.setId(1L);
         recipe.setNote(notes);
         Optional<Recipe> optionalRecipe = Optional.of(recipe);
