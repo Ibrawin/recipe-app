@@ -67,7 +67,7 @@ public class RecipeBootstrap implements CommandLineRunner {
                                 
                 Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvpiV9Sd
                 """);
-        Notes guacNotes = new Notes();
+        Note guacNotes = new Note();
         guacNotes.setNotes("""
                 For a very quick guacamole just take a 1/4 cup of salsa and mix it in with your mashed avocados.
                 Feel free to experiment! One classic Mexican guacamole has pomegranate seeds and chunks of peaches in it (a Diana Kennedy favorite). Try guacamole with added pineapple, mango, or strawberries.
@@ -75,7 +75,7 @@ public class RecipeBootstrap implements CommandLineRunner {
                 To extend a limited supply of avocados, add either sour cream or cottage cheese to your guacamole dip. Purists may be horrified, but so what? It tastes great.
                                 
                                 
-                "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws""");
+                Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws""");
 
         guacRecipe.setNote(guacNotes);
 
@@ -119,7 +119,7 @@ public class RecipeBootstrap implements CommandLineRunner {
                                 
                 Read more: http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/#ixzz4jvtrAnNm""");
 
-        Notes tacoNotes = new Notes();
+        Note tacoNotes = new Note();
         tacoNotes.setNotes("""
                 We have a family motto and it is this: Everything goes better in a tortilla.
                 Any and every kind of leftover can go inside a warm tortilla, usually with a healthy dose of pickled jalapenos. I can always sniff out a late-night snacker when the aroma of tortillas heating in a hot pan on the stove comes wafting through the house.

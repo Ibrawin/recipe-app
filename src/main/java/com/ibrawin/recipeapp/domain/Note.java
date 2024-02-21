@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @EqualsAndHashCode(exclude = {"recipe"})
 @Entity
-public class Notes {
+public class Note {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,5 +17,6 @@ public class Notes {
     private String notes;
 
     @OneToOne
+    @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 }

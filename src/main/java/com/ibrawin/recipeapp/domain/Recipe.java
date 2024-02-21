@@ -31,7 +31,7 @@ public class Recipe {
     private Byte[] image;
 
     @OneToOne(mappedBy = "recipe", cascade = CascadeType.ALL)
-    private Notes note;
+    private Note note;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private Set<Ingredient> ingredients = new HashSet<>();
@@ -42,7 +42,7 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
-    public void setNote(Notes note) {
+    public void setNote(Note note) {
         this.note = note;
         note.setRecipe(this);
     }
